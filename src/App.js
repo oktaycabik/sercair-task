@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getData } from "./api";
+import {Spinner} from "react-bootstrap"
 import Card from "./components/Card";
 import Header from "./components/Header";
 function App() {
@@ -15,11 +16,25 @@ function App() {
     <>
       <Header />
       <div className="container">
-        <>
-          <div className="row">
-            <Card data={data} />
-          </div>
-        </>
+        {
+          data.length>0 && (
+            <>
+        
+            <div className="row">
+              <Card data={data} />
+            </div>
+          </>
+          )
+        }
+        {
+          data.length===0 &&(
+            <div className="d-flex justify-content-center mt-5"> <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner></div>
+          )
+        }
+      
+       
       </div>
     </>
   );
